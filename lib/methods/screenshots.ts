@@ -13,7 +13,6 @@ import {
 } from './screenshots.interfaces';
 import { StatusAddressToolBarOffsets } from '../clientSideScripts/statusAddressToolBarOffsets.interfaces';
 import hideRemoveElements from '../clientSideScripts/hideRemoveElements';
-import hideScrollBars from '../clientSideScripts/hideScrollbars';
 import { LogLevel } from '../helpers/options.interface';
 
 /**
@@ -160,9 +159,6 @@ export async function getFullPageScreenshotsDataNativeMobile(
     const scrollY = iosViewportHeight * i;
     await executor(scrollToPosition, scrollY);
 
-    // Hide scrollbars before taking a screenshot, we don't want them, on the screenshot
-    await executor(hideScrollBars, true);
-
     // Simply wait the amount of time specified for lazy-loading
     await waitFor(fullPageScrollTimeout);
 
@@ -211,9 +207,6 @@ export async function getFullPageScreenshotsDataNativeMobile(
       ),
       screenshot,
     });
-
-    // Show scrollbars again
-    await executor(hideScrollBars, false);
   }
 
   // Put back the hidden elements to visible
@@ -257,9 +250,6 @@ export async function getFullPageScreenshotsDataAndroidChromeDriver(
     // Determine and start scrolling
     const scrollY = innerHeight * i;
     await executor(scrollToPosition, scrollY);
-
-    // Hide scrollbars before taking a screenshot, we don't want them, on the screenshot
-    await executor(hideScrollBars, true);
 
     // Simply wait the amount of time specified for lazy-loading
     await waitFor(fullPageScrollTimeout);
@@ -305,9 +295,6 @@ export async function getFullPageScreenshotsDataAndroidChromeDriver(
       ),
       screenshot,
     });
-
-    // Show the scrollbars again
-    await executor(hideScrollBars, false);
   }
 
   // Put back the hidden elements to visible

@@ -20,7 +20,8 @@
     "watch": "npm run compile -- -w",
     "precompile": "npm run clean",
     "prerelease": "npm run compile",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prepublish": "npm run compile"
   },
   "repository": {
     "type": "git",
